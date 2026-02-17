@@ -34,5 +34,14 @@ This command will only start the client though, to start the server, open anothe
 ```bash
 python server/server.py
 ```
+If this doesn't work, make sure to check if you have a `config.json` file in your `server` directory. The code wont run without a `config.json`. The structure of it goes as follows:
+```json
+{
+    "ipv4": "YOUR_COMPUTER_IP",
+    "port": 8765
+}
+```
+This doesn't come with the repository because of privacy reasons. Sharing your IPV4 is not advised.
+
 ## Things To Do
 When you have all of the code ready to edit, there are a few things to do. Firstly you can work on the GUI, there is a [figma](https://www.figma.com/design/1UfBQpflktCacmjSU8lnPb/Manhunt-App?node-id=0-1&t=4zhiIRBHF6QuI0cs-1) that you can use. If you can edit it, that means that you are trusted with this project by the owner, and that you have an account. Otherwise, feel free to create the GUI as the figma shows. You can also edit the server code, although not advised. We have a strict plan on how to edit the code, so unless you are aware of the said plan, do not attempt to edit the server code.
