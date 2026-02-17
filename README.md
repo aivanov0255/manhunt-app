@@ -1,50 +1,38 @@
-# Welcome to your Expo app 👋
+# Welcome to Manhunt
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
-
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+The client application is entirly based on react-native, hence you will need Node.js for it to work. The server side is based on Python, hence to run the server you will need Python installed as well.
+## Getting Started
+### Setup
+To get started, first clone the repository. Then go into the repository folder and run this command.
 ```bash
-npm run reset-project
+npm install
 ```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+This command installs all the necessary dependencies into your project.
+<br>
+The server code also has a few dependencies that you will need to install. To install them, run this command in the repository folder: 
+```bash
+pip install -r server/reqs.tx
+```
+or
+```bash
+cd server
+pip install -r reqs.tx
+cd ..
+```
+Now you are ready to edit the application.
+### Editing Code
+Create a new branch who's format is as such: `<year>-<objective>`. 
+All of the application code is located in the `app` directory. The app is written with react-native and TypeScript. Knowledge of both is necessary to be successful.
+<br>
+All of the server code is located in the `server` directory. The server is written in python, and uses websockets to connect to the client.
+### Testing Code
+To test the client, run the following command: 
+```bash
+npx expo start --go
+```
+This command will only start the client though, to start the server, open another terminal window, make sure you are in the repository directory, and run the following command:
+```bash
+python server/server.py
+```
+## Things To Do
+When you have all of the code ready to edit, there are a few things to do. Firstly you can work on the GUI, there is a [figma](https://www.figma.com/design/1UfBQpflktCacmjSU8lnPb/Manhunt-App?node-id=0-1&t=4zhiIRBHF6QuI0cs-1) that you can use. If you can edit it, that means that you are trusted with this project by the owner, and that you have an account. Otherwise, feel free to create the GUI as the figma shows. You can also edit the server code, although not advised. We have a strict plan on how to edit the code, so unless you are aware of the said plan, do not attempt to edit the server code.
