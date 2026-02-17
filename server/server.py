@@ -2,6 +2,16 @@ import asyncio
 import websockets
 import json
 
+IP = ""
+PORT = None
+
+with open("config.json") as f:
+    config = json.load(f)
+    IP = config["ipv4"]
+    PORT = config["port"]
+    f.close()
+    
+
 class Player:
     def __init__(self, name):
         self.name = name
@@ -55,8 +65,8 @@ async def handle_message(websocket):
             }))
 
 async def main():
-    async with websockets.serve(handle_message, "192.168.1.80", 8765):
-        print("WebSocket server running on ws://192.168.1.80:8765")
+    async with websockets.serve(handle_message, IP, PORT):
+        print(f"WebSocket server running on ws://{IP}:{PORT}")
         await asyncio.Future()
 
 if __name__ == "__main__":
