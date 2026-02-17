@@ -1,13 +1,16 @@
 import GameButton from "@/components/GameButton";
+import { socketService } from "@/services/socket";
 import { useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
+import { useEffect } from "react";
 import { Text, View } from "react-native";
 
 
 type RootStackParamList = {
   index: undefined;
   joingame: undefined;
+  newgame: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -17,10 +20,17 @@ export default function Index() {
       Jersey: require("../assets/fonts/Jersey10-Regular.ttf"),
     });
 
+  useEffect(() => {
+    socketService.connect("ws://192.168.1.80:8765");
+    return () => {
+      socketService.disconnect();
+    };
+  }, []);
+
   const navigation = useNavigation<NavigationProp>();
 
   function handleNewGamePress() {
-    console.log("New Game button pressed!");
+    navigation.navigate("newgame");
   }
 
   function handleJoinGamePress() {
