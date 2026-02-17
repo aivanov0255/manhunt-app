@@ -44,3 +44,6 @@ app-example
 
 # config file with IP address
 server/config.json
+
+# VSCode settings
+.vscode/
