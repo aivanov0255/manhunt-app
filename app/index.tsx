@@ -1,6 +1,6 @@
 import GameButton from "@/components/GameButton";
 import { socketService } from "@/services/socket";
-import { useNavigation } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import { useEffect } from "react";
@@ -11,6 +11,7 @@ type RootStackParamList = {
   index: undefined;
   joingame: undefined;
   newgame: undefined;
+  game: undefined;
 };
 
 type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
@@ -21,7 +22,7 @@ export default function Index() {
     });
 
   useEffect(() => {
-    socketService.connect("ws://192.168.1.80:8765");
+    socketService.connect("ws://10.16.80.106:8765");
     return () => {
       socketService.disconnect();
     };
@@ -42,21 +43,21 @@ export default function Index() {
   }
 
   return (
-    <View
-      style={{
-        flex: 1,
-        justifyContent: "center",
-        alignItems: "center",
-        backgroundColor: "#6043A9",
-      }}
-    >
-      <Text style={{ fontSize: 100, fontFamily: "Jersey", marginBottom: 0, color: "#FFFFFF", padding: 0 }}>
-        Manhunt
-      </Text>
-      <Text style={{ fontSize: 20, fontFamily: "Jersey", marginBottom: 50, color: "#FFFFFF", alignSelf: "flex-start", marginLeft: 50, marginTop: 0 }}>Bbronse & Prygin</Text>
-      <GameButton text="New Game" onPress={handleNewGamePress} width={300} height={100} />
-      <View style={{ height: 20 }} />
-      <GameButton text="Join Game" onPress={handleJoinGamePress} width={300} height={100} />
-    </View>
+      <View
+        style={{
+          flex: 1,
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: "#6043A9",
+        }}
+      >
+        <Text style={{ fontSize: 100, fontFamily: "Jersey", marginBottom: 0, color: "#FFFFFF", padding: 0 }}>
+          Manhunt
+        </Text>
+        <Text style={{ fontSize: 20, fontFamily: "Jersey", marginBottom: 50, color: "#FFFFFF", alignSelf: "flex-start", marginLeft: 50, marginTop: 0 }}>Bbronse & Prygin</Text>
+        <GameButton text="New Game" onPress={handleNewGamePress} width={300} height={100} />
+        <View style={{ height: 20 }} />
+        <GameButton text="Join Game" onPress={handleJoinGamePress} width={300} height={100} />
+      </View>
   );
 }

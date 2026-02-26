@@ -1,11 +1,42 @@
 import GameButton from "@/components/GameButton";
+import { getLocation } from "@/services/location";
+import { socketService } from "@/services/socket";
+import { useNavigation } from "@react-navigation/native";
+import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Text, TextInput, View } from "react-native";
 
+type RootStackParamList = {
+  index: undefined;
+  joingame: undefined;
+  newgame: undefined;
+  game: undefined;
+  creating: undefined;
+  joining: undefined;
+};
+
+
+type NavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 export default function JoinGame() {
+    const navigation = useNavigation<NavigationProp>();
+
     let gameCode = "";
     let playerName = "";
+
+    const [location, setLocation] = useState<{ latitude: number; longitude: number } | null>(null);
+
+    useEffect(() => {
+      getLocation().then(location => {
+        if (location) {
+          setLocation({
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+          });
+        }
+      });
+    }, []);
 
     const [loaded] = useFonts({
       Jersey: require("../assets/fonts/Jersey10-Regular.ttf"),
@@ -13,6 +44,15 @@ export default function JoinGame() {
 
     function joinGame() {
       console.log("Attempting to join game with code: " + gameCode + " and player name: " + playerName + "...");
+
+      socketService.send({
+        action: "join_game",
+        game_code: gameCode, 
+        player_name: playerName,
+        location: location
+      })
+
+      navigation.navigate("joining");
     }
 
     return (
